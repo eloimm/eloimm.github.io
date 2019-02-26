@@ -19,7 +19,7 @@
       <guid>/presentacions/materials/</guid>
       <description>Material de les presentacions | xerrades realitzades:  26|09|18 Curso de Atención a la Infancia en Atención Primaria de Servicios Sociales. Universidad Pública de Navarra
  18|07|18 La pobreza y la exclusión social en la infancia y las famílias. Universidad de Barcelona - Juliols UB
- 12|12|17 “Polítiques per a la infància vulnerable des del mon local&amp;rdquo; Laboratori de Serveis Socials · IGOP S17. Polítiques per a la infància vulnerable PFD Vídeo</description>
+ 12|12|17 Polítiques per a la infància vulnerable des del mon local&amp;rdquo; Laboratori de Serveis Socials · IGOP S17. Polítiques per a la infància vulnerable [PFD] [Vídeo]</description>
     </item>
     
     <item>
@@ -34,14 +34,12 @@ El Shapefile (.</description>
     </item>
     
     <item>
-      <title>Migrate from Jekyll</title>
-      <link>/blog/2015/10/10/migrate-from-jekyll/</link>
-      <pubDate>Sat, 10 Oct 2015 13:07:31 +0200</pubDate>
+      <title></title>
+      <link>/presentacions/2019-02-26-materials/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/blog/2015/10/10/migrate-from-jekyll/</guid>
-      <description>Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static. You should therefore move it all there. With Jekyll, something that looked like
-▾ &amp;lt;root&amp;gt;/ ▾ images/ logo.png  should become
-▾ &amp;lt;root&amp;gt;/ ▾ static/ ▾ images/ logo.png  Additionally, you&amp;rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.</description>
+      <guid>/presentacions/2019-02-26-materials/</guid>
+      <description>Materialscode{white-space: pre;}pre:not([class]) {background-color: white;}if (window.hljs) {hljs.configure({languages: []});hljs.initHighlightingOnLoad();if (document.readyState &amp;&amp; document.readyState === &#34;complete&#34;) {window.setTimeout(function() { hljs.initHighlighting(); }, 0);}}h1 {font-size: 34px;}h1.title {font-size: 38px;}h2 {font-size: 30px;}h3 {font-size: 24px;}h4 {font-size: 18px;}h5 {font-size: 16px;}h6 {font-size: 12px;}.</description>
     </item>
     
     <item>
