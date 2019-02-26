@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Slides on Apunts &amp; Idees</title>
+    <link>/tags/slides/</link>
+    <description>Recent content in Slides on Apunts &amp; Idees</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ca</language>
+    <lastBuildDate>Tue, 26 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/slides/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Presentacions</title>
+      <link>/presentacions/presentacions/</link>
+      <pubDate>Tue, 26 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/presentacions/presentacions/</guid>
+      <description>Material de les presentacions|xerrades realitzades:26/09/18 Curso de Atención a la Infancia en Atención Primaria de Servicios Sociales. Universidad Pública de Navarra
+18/07/18 La pobreza y la exclusión social en la infancia y las famílias. Universidad de Barcelona - Juliols UB
+</description>
+    </item>
+    
+    <item>
+      <title>Presentacions</title>
+      <link>/presentacions/presentacions/</link>
+      <pubDate>Tue, 26 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/presentacions/presentacions/</guid>
+      <description> Material de les presentacions|xerrades realitzades:  26/09/18 Curso de Atención a la Infancia en Atención Primaria de Servicios Sociales. Universidad Pública de Navarra
+ 18/07/18 La pobreza y la exclusión social en la infancia y las famílias. Universidad de Barcelona - Juliols UB
+  </description>
+    </item>
+    
+  </channel>
+</rss>
