@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rmaps</title>
+  <meta name="author" content="" />
+
+  
+  <meta name="keywords" content="devows, hugo, go">	
+  
+
+  
+  <meta name="description" content="Site template made by devcows using hugo">	
+  
+
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  
+  <link href="/css/animate.css" rel="stylesheet">
+
+  
+  
+    <link href="/css/style.red.css" rel="stylesheet" id="theme-stylesheet">
+  
+
+
+  
+  <link href="/css/custom.css" rel="stylesheet">
+
+  
+  
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+  
+
+  <link href="/css/owl.carousel.css" rel="stylesheet">
+  <link href="/css/owl.theme.css" rel="stylesheet">
+
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Apunts &amp; Idees">
+
+  
+  <meta property="og:title" content="Rmaps" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/blog/2019/02/20/2019-02-20-rmaps//" />
+  <meta property="og:image" content="img/logo.png" />
+
+</head>
+
+
+  <body>
+
+    <div id="all">
+
+        <header>
+
+          <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="/">
+                    <img src="/img/logo.png" alt="Rmaps logo" class="hidden-xs hidden-sm">
+                    <img src="/img/logo-small.png" alt="Rmaps logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Rmaps - anar a l&#39;inici</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                      <span class="sr-only">Canviar Navigació</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                </div>
+            </div>
+            
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/">Inici</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/blog/">Bloc</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/presentacions/">Presentacions</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/contact/">Contacte</a>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+
+            <div class="collapse clearfix" id="search">
+
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+
+                </span>
+                    </div>
+                </form>
+
+            </div>
+            
+
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+        </header>
+
+        <div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Rmaps</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    
+
+                    <div class="col-md-9" id="blog-post">
+
+                        <p class="text-muted text-uppercase mb-small text-right">Per <a href="#">@eloimm</a> | February 20, 2019</p>
+
+                        <div id="post-content">
+                          
+
+
+<div id="apunts-per-a-la-representacio-de-mapes-amb-r-amb-tm_shape" class="section level2">
+<h2>Apunts per a la representació de mapes amb <code>R</code> amb <code>tm_shape()</code></h2>
+<p>En aquest post present una manera més o menys sencilla per a <em>plotear</em> dades en un mapa. Per a fer-ho ens centrarem en les comarques de Catalunya.</p>
+<p>És important revisar que les unitats territorials i de les dades són els mateixos donat que en els darrers anys s’han creat noves comarques (i municipis) i l’exercici no resultaria.</p>
+<div id="el-shapefile-.shp-del-territorio" class="section level3">
+<h3>El Shapefile (.shp) del territorio</h3>
+<p>Carreguem els poligons del shapefile (el prenem d’ <a href="https://vangdata.carto.com/tables/shapefiles_catalunya_comarcas/public">aquí</a> on no apareic el Moianès, comarca creada al 2015)</p>
+<pre class="r"><code>library(rgdal)
+library(sp)
+poligons&lt;- readOGR(&quot;data/Comarques/shapefiles_catalunya_comarcas.shp&quot;,
+                   &quot;shapefiles_catalunya_comarcas&quot;,
+                   use_iconv = TRUE, # Sin este paramtro da errores en los accentos para el catalan
+                   encoding = &quot;UTF-8&quot;)</code></pre>
+<p>Per a visualitzar dades de l’arxiu</p>
+<pre class="r"><code>head(poligons@data)
+poligons@data$nom_comar</code></pre>
+<p>Podem operar en ells, per exemple actualitzant la “Val d’Aran” per “Aran”.</p>
+<pre class="r"><code>library(tidyverse)
+poligons@data$nom_comar &lt;- as.character(poligons@data$nom_comar)
+poligons@data$nom_comar[poligons@data$nom_comar==&quot;Val d&#39;Aran&quot;] &lt;- &quot;Aran&quot;
+poligons@data$nom_comar &lt;- sort(poligons@data$nom_comar)
+poligons@data$nom_comar &lt;- as.factor(poligons@data$nom_comar)</code></pre>
+</div>
+<div id="les-dades" class="section level3">
+<h3>Les dades</h3>
+<p>Carreguem les dades que volem representar:</p>
+<pre class="r"><code>load(file = &quot;data/dades.RData&quot;)</code></pre>
+<p>Creem una col·lumna en les <code>dades</code> que sigui comuna a la de les <code>poligons</code></p>
+<pre class="r"><code>dades$id &lt;- poligons@data$comarca</code></pre>
+</div>
+<div id="merge" class="section level3">
+<h3>‘merge()’</h3>
+<p>Ara podem juntar els objectes.</p>
+<pre class="r"><code>mapa &lt;- merge(poligons, dades, by.x = &quot;comarca&quot;, by.y= &quot;id&quot;)</code></pre>
+</div>
+<div id="dibuixar-els-mapes" class="section level3">
+<h3>Dibuixar els mapes</h3>
+<p>Dibuixem els mapes</p>
+<pre class="r"><code>library(tmap)
+mp1 &lt;- tm_shape(mapa) + 
+  tm_fill(&quot;2012&quot;, # Columna a pintar
+          palette = &quot;-RdYlGn&quot;)+
+  tm_layout(frame = FALSE)
+mp1</code></pre>
+<div class="figure">
+<img src="https://github.com/eloimm/Rmaps/raw/master/images/2012.png" />
+
+</div>
+<p>Si volem guardar-ho en format <code>.png</code></p>
+<pre class="r"><code>png(filename = &quot;images/2012.png&quot;)
+mp1
+dev.off()</code></pre>
+<p>Un dels problemes que van surgir al fer-ho va ser que al voler comparar aquest mapa amb el de l’any 2014…</p>
+<p>(creem el mapa 2014)</p>
+<pre class="r"><code>mp2 &lt;- tm_shape(mapa) + 
+    tm_fill(&quot;2014&quot;, # Columna a pintar
+          palette = &quot;-RdYlGn&quot;)+
+  tm_layout(frame = FALSE)
+mp2</code></pre>
+<p>Els imprimim l’ún al costat de l’altre:</p>
+<pre class="r"><code>library(grid)
+library(gridExtra)
+
+grid.newpage()
+pushViewport(viewport(layout=grid.layout(1,2)))
+print(mp1, vp=viewport(layout.pos.col = 1, layout.pos.row =1))
+print(mp2, vp=viewport(layout.pos.col = 2, layout.pos.row =1))</code></pre>
+<div class="figure">
+<img src="https://github.com/eloimm/Rmaps/raw/master/images/Mp1Mp2.png" />
+
+</div>
+<p><strong>Els valors i colors de l’escala (automàtica) ens distorcionen la comparació d’aquests.</strong> Per a solucionar-hoo hem d’assignar els rangs i fixar l’estil per a cadascun dels anys.</p>
+<p>Identifiquem el valor màxim dels anys (que serà el màxim de l’escala).</p>
+<pre class="r"><code>max(mapa$`2012`)
+max(mapa$`2013`)
+max(mapa$`2014`)</code></pre>
+<p>El valor màxim dels valors és 150.1. Creem un rang de valors fins 160.</p>
+<pre class="r"><code>breaks &lt;- c(20,40,60,80,100, 120, 140,160)</code></pre>
+<p>Dibuixem els mapes:</p>
+<pre class="r"><code>map1 &lt;- tm_shape(mapa) + 
+  tm_fill(&quot;2012&quot;, 
+          breaks = breaks, palette = &quot;-RdYlGn&quot;, style = &quot;fixed&quot;)+
+  tm_layout(legend.show = FALSE, frame = FALSE)
+map2 &lt;-tm_shape(mapa) + 
+  tm_fill(&quot;2013&quot;, breaks =  breaks, palette = &quot;-RdYlGn&quot;, style = &quot;fixed&quot;)+
+  tm_layout(legend.show = FALSE, frame = FALSE)
+map3 &lt;- tm_shape(mapa) + 
+  tm_fill(&quot;2014&quot;, breaks = breaks, palette = &quot;-RdYlGn&quot;, style = &quot;fixed&quot;)+
+  tm_layout(legend.show = FALSE, frame = FALSE, legend.outside=TRUE, legend.outside.position=&quot;bottom&quot;)</code></pre>
+<p>Per a la llegenda, prenem els valors (p.e del mapa 2014) i els guardem per a la llegenda del mapa</p>
+<pre class="r"><code>legend.map &lt;- tm_shape(mapa) + 
+  tm_fill(&quot;2014&quot;, title = &quot;Valores&quot;,
+          breaks = breaks, 
+          palette = &quot;-RdYlGn&quot;, style = &quot;fixed&quot;) +
+  tm_layout(legend.only = TRUE)</code></pre>
+<p>Dibuixem:</p>
+<pre class="r"><code>grid.newpage()
+pushViewport(viewport(layout=grid.layout(2,2)))
+print(map1, vp=viewport(layout.pos.col = 1, layout.pos.row =1))
+print(map2, vp=viewport(layout.pos.col = 2, layout.pos.row =1))
+print(map3, vp=viewport(layout.pos.col = 1, layout.pos.row =2))
+print(legend.map, vp=viewport(layout.pos.row = 2, layout.pos.col = 2))</code></pre>
+<div class="figure">
+<img src="https://github.com/eloimm/Rmaps/raw/master/images/Map1Map2Map3Leg.png" />
+
+</div>
+</div>
+<div id="mes-informacio" class="section level3">
+<h3>Més informació</h3>
+<ul>
+<li><p>Guy Lansley and James Cheshire (2016) <a href="http://www.spatialanalysisonline.com/An%20Introduction%20to%20Spatial%20Data%20Analysis%20in%20R.pdf">An Introduction to Spatial Data Analysis and Visualisation in R</a></p></li>
+<li><p>Robin Lovelace, Jakub Nowosad, Jannes Muenchow (2019) <a href="https://geocompr.robinlovelace.net/adv-map.html#prerequisites-6">Geocomputation with R</a></p></li>
+</ul>
+</div>
+</div>
+
+                        </div>
+                        
+                        
+                        <div id="comments">
+                            <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "devcows" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                        </div>
+                        
+
+                    </div>
+                    
+
+                    
+
+                    
+
+                    <div class="col-md-3">
+
+                        
+
+                        
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Cercar</h3>
+    </div>
+
+    <div class="panel-body">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
+            <div class="input-group">
+                <input type="search" name="q" class="form-control" placeholder="Cercar">
+                <input type="hidden" name="sitesearch" value="/">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Categories</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            <li><a href="/categories/lorem">lorem (1)</a>
+            </li>
+            
+            <li><a href="/categories/r">r (1)</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="panel sidebar-menu">
+    <div class="panel-heading">
+      <h3 class="panel-title">Paraules clau</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="/tags/comarques"><i class="fa fa-tags"></i> comarques</a>
+            </li>
+            
+            <li><a href="/tags/ipsum"><i class="fa fa-tags"></i> ipsum</a>
+            </li>
+            
+            <li><a href="/tags/maps"><i class="fa fa-tags"></i> maps</a>
+            </li>
+            
+            <li><a href="/tags/r"><i class="fa fa-tags"></i> r</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+                        
+
+                    </div>
+                    
+
+                    
+
+                </div>
+                
+
+            </div>
+            
+        </div>
+        
+
+        <footer id="footer">
+    <div class="container">
+
+        
+        <div class="col-md-4 col-sm-6">
+            <h4>Sobre nosaltres</h4>
+
+            Projectes, apunts, idees.
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+        <div class="col-md-4 col-sm-6">
+
+             
+            <h4>Posts recents</h4>
+
+            <div class="blog-entries">
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/blog/2019/02/20/2019-02-20-rmaps/">
+                          
+                            <img src="/img/banners/2012.png" class="img-responsive" alt="Rmaps">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/blog/2019/02/20/2019-02-20-rmaps/">Rmaps</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/blog/2015/10/10/migrate-from-jekyll/">
+                          
+                            <img src="/img/banners/banner-5.jpg" class="img-responsive" alt="Migrate from Jekyll">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/blog/2015/10/10/migrate-from-jekyll/">Migrate from Jekyll</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/blog/">
+                          
+                            <img src="/img/placeholder.png" class="img-responsive" alt="Blogs">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/blog/">Blogs</a></h5>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr class="hidden-md hidden-lg">
+             
+
+        </div>
+        
+
+        
+        <div class="col-md-4 col-sm-6">
+
+          <h4>Contacte</h4>
+
+            <strong>@eloimm.</strong>
+       <br>
+       <strong></strong>
+      </p>
+      
+
+
+            <a href="/contact" class="btn btn-small btn-template-main">Anar a la pàgina de contacte</a>
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+    </div>
+    
+</footer>
+
+
+
+
+
+
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            
+            <p class="pull-left">Copyright (c) 2019, @eloimm; all rights reserved.</p>
+            
+            <p class="pull-right">
+              Plantilla creada per <a href="http://bootstrapious.com/free-templates">Bootstrapious</a>.
+              
+
+              Adaptada a Hugo per <a href="https://github.com/devcows/hugo-universal-theme">DevCows</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    </div>
+    
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-XXXXX-X', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+<script src="/js/hpneo.gmaps.js"></script>
+<script src="/js/gmaps.init.js"></script>
+<script src="/js/front.js"></script>
+
+
+<script src="/js/owl.carousel.min.js"></script>
+
+
+  </body>
+</html>

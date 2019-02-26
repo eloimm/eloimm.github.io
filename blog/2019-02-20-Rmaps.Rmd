@@ -1,0 +1,176 @@
+---
+banner: img/banners/2012.png
+title: "Rmaps"
+author: "@eloimm"
+date: 2019-02-20T21:13:14-05:00
+categories: ["R"]
+tags: ["R", "Maps", "Comarques"]
+---
+
+## Apunts per a la representació de mapes amb `R` amb `tm_shape()`
+
+En aquest post present una manera més o menys sencilla per a *plotear* dades en un mapa. Per a fer-ho ens centrarem en les comarques de Catalunya. 
+
+És important revisar que les unitats territorials i de les dades són els mateixos donat que en els darrers anys s'han creat noves comarques (i municipis) i l'exercici no resultaria.
+
+### El Shapefile (.shp) del territorio  
+
+Carreguem els poligons del shapefile (el prenem d' [aquí](https://vangdata.carto.com/tables/shapefiles_catalunya_comarcas/public) on no apareic el Moianès, comarca creada al 2015)
+
+```{r eval=FALSE}
+library(rgdal)
+library(sp)
+poligons<- readOGR("data/Comarques/shapefiles_catalunya_comarcas.shp",
+                   "shapefiles_catalunya_comarcas",
+                   use_iconv = TRUE, # Sin este paramtro da errores en los accentos para el catalan
+                   encoding = "UTF-8")
+```
+
+
+Per a visualitzar dades de l'arxiu
+```{r eval=FALSE}
+head(poligons@data)
+poligons@data$nom_comar
+```
+
+Podem operar en ells, per exemple actualitzant la "Val d'Aran" per "Aran".
+
+```{r eval=FALSE}
+library(tidyverse)
+poligons@data$nom_comar <- as.character(poligons@data$nom_comar)
+poligons@data$nom_comar[poligons@data$nom_comar=="Val d'Aran"] <- "Aran"
+poligons@data$nom_comar <- sort(poligons@data$nom_comar)
+poligons@data$nom_comar <- as.factor(poligons@data$nom_comar)
+```
+
+
+### Les dades  
+
+Carreguem les dades que volem representar:  
+
+```{r eval=FALSE}
+load(file = "data/dades.RData")
+```
+
+Creem una col·lumna en les `dades` que sigui comuna a la de les `poligons`
+```{r eval=FALSE}
+dades$id <- poligons@data$comarca
+```
+
+
+### 'merge()'   
+
+Ara podem juntar els objectes.
+
+```{r eval=FALSE}
+mapa <- merge(poligons, dades, by.x = "comarca", by.y= "id")
+```
+
+### Dibuixar els mapes
+
+Dibuixem els mapes  
+
+```{r eval=FALSE}
+library(tmap)
+mp1 <- tm_shape(mapa) + 
+  tm_fill("2012", # Columna a pintar
+          palette = "-RdYlGn")+
+  tm_layout(frame = FALSE)
+mp1
+```
+
+![](https://github.com/eloimm/Rmaps/raw/master/images/2012.png)
+
+Si volem guardar-ho en format `.png`
+```{r eval=FALSE}
+png(filename = "images/2012.png")
+mp1
+dev.off()
+```
+
+Un dels problemes que van surgir al fer-ho va ser que al voler comparar aquest mapa amb el de l'any 2014...
+
+(creem el mapa 2014)
+
+```{r eval=FALSE}
+mp2 <- tm_shape(mapa) + 
+    tm_fill("2014", # Columna a pintar
+          palette = "-RdYlGn")+
+  tm_layout(frame = FALSE)
+mp2
+```
+
+Els imprimim l'ún al costat de l'altre:
+
+```{r eval=FALSE}
+library(grid)
+library(gridExtra)
+
+grid.newpage()
+pushViewport(viewport(layout=grid.layout(1,2)))
+print(mp1, vp=viewport(layout.pos.col = 1, layout.pos.row =1))
+print(mp2, vp=viewport(layout.pos.col = 2, layout.pos.row =1))
+```
+
+![](https://github.com/eloimm/Rmaps/raw/master/images/Mp1Mp2.png)   
+
+
+**Els valors i colors de l'escala (automàtica) ens distorcionen la comparació d'aquests.** Per a solucionar-hoo hem d'assignar els rangs i fixar l'estil per a cadascun dels anys.  
+
+Identifiquem el valor màxim dels anys (que serà el màxim de l'escala).
+
+```{r eval=FALSE}
+max(mapa$`2012`)
+max(mapa$`2013`)
+max(mapa$`2014`)
+```
+
+El valor màxim dels valors és 150.1. Creem un rang de valors fins 160.
+
+```{r eval=FALSE}
+breaks <- c(20,40,60,80,100, 120, 140,160)
+```
+
+Dibuixem els mapes:
+
+```{r eval=FALSE}
+map1 <- tm_shape(mapa) + 
+  tm_fill("2012", 
+          breaks = breaks, palette = "-RdYlGn", style = "fixed")+
+  tm_layout(legend.show = FALSE, frame = FALSE)
+map2 <-tm_shape(mapa) + 
+  tm_fill("2013", breaks =  breaks, palette = "-RdYlGn", style = "fixed")+
+  tm_layout(legend.show = FALSE, frame = FALSE)
+map3 <- tm_shape(mapa) + 
+  tm_fill("2014", breaks = breaks, palette = "-RdYlGn", style = "fixed")+
+  tm_layout(legend.show = FALSE, frame = FALSE, legend.outside=TRUE, legend.outside.position="bottom")
+```
+
+Per a la llegenda, prenem els valors (p.e del mapa 2014) i els guardem per a la llegenda del mapa
+
+```{r eval=FALSE}
+legend.map <- tm_shape(mapa) + 
+  tm_fill("2014", title = "Valores",
+          breaks = breaks, 
+          palette = "-RdYlGn", style = "fixed") +
+  tm_layout(legend.only = TRUE)
+```
+
+Dibuixem:
+
+```{r eval=FALSE}
+grid.newpage()
+pushViewport(viewport(layout=grid.layout(2,2)))
+print(map1, vp=viewport(layout.pos.col = 1, layout.pos.row =1))
+print(map2, vp=viewport(layout.pos.col = 2, layout.pos.row =1))
+print(map3, vp=viewport(layout.pos.col = 1, layout.pos.row =2))
+print(legend.map, vp=viewport(layout.pos.row = 2, layout.pos.col = 2))
+```
+
+![](https://github.com/eloimm/Rmaps/raw/master/images/Map1Map2Map3Leg.png)
+
+### Més informació  
+
+  * Guy Lansley and James Cheshire (2016) [An Introduction to Spatial Data Analysis and Visualisation in R](http://www.spatialanalysisonline.com/An%20Introduction%20to%20Spatial%20Data%20Analysis%20in%20R.pdf)  
+  
+  * Robin Lovelace, Jakub Nowosad, Jannes Muenchow (2019) [Geocomputation with R](https://geocompr.robinlovelace.net/adv-map.html#prerequisites-6) 
