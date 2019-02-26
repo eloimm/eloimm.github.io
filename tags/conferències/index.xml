@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Presentacions on Apunts &amp; Idees</title>
-    <link>/categories/presentacions/</link>
-    <description>Recent content in Presentacions on Apunts &amp; Idees</description>
+    <title>Conferències on Apunts &amp; Idees</title>
+    <link>/tags/confer%C3%A8ncies/</link>
+    <description>Recent content in Conferències on Apunts &amp; Idees</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ca</language>
     <lastBuildDate>Tue, 26 Feb 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/presentacions/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/confer%C3%A8ncies/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
